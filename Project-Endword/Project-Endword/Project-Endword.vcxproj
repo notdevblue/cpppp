@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CAgreeDisagree.cpp" />
+    <ClCompile Include="CCheckWord.cpp" />
+    <ClCompile Include="CEndWord.cpp" />
+    <ClCompile Include="CMainText.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CAgreeDisagree.h" />
+    <ClInclude Include="CCheckWord.h" />
+    <ClInclude Include="CEndWord.h" />
+    <ClInclude Include="CMainText.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
