@@ -1,2 +1,3 @@
-﻿  main.cpp
+﻿  CMainText.cpp
+C:\Users\ROG\Documents\cpppp\Project-Endword\Project-Endword\CMainText.cpp(69): warning C4715: 'CMainText::KeyControl': 모든 제어 경로에서 값을 반환하지는 않습니다.
   Project-Endword.vcxproj -> C:\Users\ROG\Documents\cpppp\Project-Endword\x64\Debug\Project-Endword.exe

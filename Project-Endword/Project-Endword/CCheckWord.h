@@ -18,7 +18,10 @@ private:
 public:
 	CCheckWord();
 
+	void Gotoxy(int, int);
 	void FirstWord();
 	bool WordInputCheck();
+	void TextColor(int foreground);
+	void PlayerName();
 };
 

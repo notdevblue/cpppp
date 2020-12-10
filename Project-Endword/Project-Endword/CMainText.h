@@ -1,15 +1,23 @@
-#pragma once
+#include<Windows.h>
 #include<iostream>
-using namespace std;
+#include<conio.h>
+#define UP 0
+#define DOWN 1
+#define SUBMIT 2
 
-// 플레이어 수 입력
-// 시작 버튼 이거 먼저 해야지
-// 구현
+using namespace std;
 
 class CMainText
 {
-
 public:
-	void Input();
-	void Print();
+	CMainText();
+	~CMainText();
+private:
+public:
+	int MenuDraw();
+	void Gotoxy(int, int);
+	int KeyControl();
+	void InfoDraw();
+	int MenuPlay();
 };
+

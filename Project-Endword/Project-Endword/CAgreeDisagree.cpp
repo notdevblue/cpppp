@@ -4,8 +4,7 @@ bool CAgreeDisagree::AgreeDisagree()
 {
 	srand((unsigned int)time(nullptr));
 
-
-	bool playerAgrees[5] = {false};
+	bool playerAgrees[3] = {false};
 		// TODO : 임시 숫자
 	int playerAgreed = 0;
 	int playerCount = _countof(playerAgrees);
@@ -32,13 +31,13 @@ bool CAgreeDisagree::AgreeDisagree()
 		while (!bInputNormal)
 		{
 			cin >> buffer;
-			if (buffer == "인정")
+			if (buffer == "인정" || buffer == "1")
 			{
 				playerAgrees[curPlayer] = true;
 				bInputNormal = true;
 				
 			}
-			else if (buffer == "노인정")
+			else if (buffer == "노인정" || buffer == "2")
 			{
 				playerAgrees[curPlayer] = false;
 				bInputNormal = true;
@@ -64,6 +63,7 @@ bool CAgreeDisagree::AgreeDisagree()
 	if (playerAgreed > (playerCount / 2))
 	{
 		cout << "인정." << endl;
+		cout << "다음 사람이 입력하세요" << endl;
 		return true;
 	}
 	else if (playerAgreed < (playerCount / 2))
