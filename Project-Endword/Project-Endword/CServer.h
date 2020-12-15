@@ -1,11 +1,16 @@
 #pragma once
-#include <vector>
 #include <WinSock2.h>
+#include <vector>
 #include <stdio.h>
 #include <conio.h>
-#pragma comment(lib, "ws2_32")
+#include <algorithm>
 
-class CServer
+#include "CCheckWord.h"
+#include "CAgreeDisagree.h"
+
+#define DEBUG
+
+class CServer : public CCheckWord, CAgreeDisagree
 {
 private:
 	WSADATA wsaData;
@@ -14,12 +19,39 @@ private:
 	SOCKADDR_IN tServerInfo;
 	SOCKADDR_IN tClientInfo;
 	
-	const USHORT PORT = 4578;
-	const WORD PACKET_SIZE = 1024;
+	CONST USHORT PORT;
+	CONST WORD PACKET_SIZE;
+	
+	
+	CHAR buffer;
+	LPSTR chlpClientMsg;
+	LPSTR chlpClientNickname;
+	LPSTR chlpServerNickname;
+
+	BOOL bKeepGoing;
+	BOOL bIsKoreanNickname;
+
+	INT iTurn;
+
+	enum CLIENTCONNECTION
+	{
+		CLIENTERROR = -2,
+		SERVERERROR = -1,
+		DISCONNECTED = 0,
+		CONNECTED = 1
+	};
+
 public:
-	CServer();
+	/// <summary>
+	/// Pakcet size must be 1024
+	/// </summary>
+	/// <param name="port"></param>
+	/// <param name="pakcetSize"></param>
+	CServer(USHORT port = 4578, WORD pakcetSize = 1024);
 	~CServer();
 
-	bool InitServer();
+	void Nickname();
+	void CheckNickname(char ch);
+	int InitServer();
 };
 

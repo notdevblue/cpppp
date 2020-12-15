@@ -1,7 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
-
+#include <windows.h>
+#include <conio.h>
 using namespace std;
 
 // °¡³ª'´Ù'
@@ -22,6 +23,6 @@ public:
 	void FirstWord();
 	bool WordInputCheck();
 	void TextColor(int foreground);
-	void PlayerName();
+	void PlayerName(LPSTR, LPSTR, int);
 };
 

@@ -8,7 +8,9 @@ CMainText::CMainText()
 }
 
 CMainText::~CMainText()
-{}
+{
+
+}
 
 void CMainText::Gotoxy(int x, int y)
 {
@@ -20,9 +22,11 @@ void CMainText::Gotoxy(int x, int y)
 }
 
 int CMainText::MenuDraw()
-{
+{	
 	int x = 24;
 	int y = 12;
+	Gotoxy(0, y - 10);
+	cout << "W, S, Space 로 선택";
 	Gotoxy(x - 2, y);
 	cout << "> 게임시작";
 	Gotoxy(x, y+1);
@@ -71,9 +75,10 @@ int CMainText::KeyControl()
 void CMainText::InfoDraw()
 {
 	system("cls");
-	cout << "게임정보";
+	cout << "=== 만든 사람들 ===\n클라이언트 : 김원식, 유건욱\n서버 : 한우엽\n";
 
-	while(1){
+	while(true)
+	{
 		if (KeyControl() == SUBMIT)
 			break;
 	}
@@ -84,6 +89,7 @@ int CMainText::MenuPlay() {
 	{
 		int menuCode = MenuDraw();
 		if (menuCode == 0) {
+			Gotoxy(0, 0);
 			return(0);
 		}
 		else if (menuCode == 1) {
@@ -99,9 +105,4 @@ int CMainText::MenuPlay() {
 		}
 		system("cls");
 	}
-}
-
-void ServerText() 
-{
-	
 }

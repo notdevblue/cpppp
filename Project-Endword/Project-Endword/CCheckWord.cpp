@@ -1,9 +1,7 @@
 #include "CCheckWord.h"
-//#include "CMainText.cpp"
-#define CYAN 3 
+#define GRAY 8 
 #define WHITE 15 
-#include <windows.h>
-#include <conio.h>
+
 
 CCheckWord::CCheckWord() {}
 
@@ -28,15 +26,27 @@ void CCheckWord::TextColor(int foreground)
 
 }
 
-void CCheckWord::PlayerName() 
+// TODO : thread 로 뺴야 할 듯 하다.
+// 무한루프 돌려서 한 귀퉁이에 계속 나오도록.
+void CCheckWord::PlayerName(LPSTR playerOne, LPSTR playerTwo, int activePlayer) 
 {
 	int x = 24;
 	int y = 12;
-	Gotoxy(x - 2, y);
-	TextColor(CYAN);
-	wcout << "플레이어 1" << endl;
-	TextColor(WHITE);
-	wcout << "플레이어 2" << endl;
+	if (activePlayer == 1)
+	{
+		Gotoxy(x - 2, y);
+		TextColor(WHITE);
+		wcout << "플레이어 1 : " << playerOne << endl;
+		TextColor(GRAY);
+		wcout << "플레이어 2 : " << playerTwo;
+	}
+	else
+	{
+		TextColor(GRAY);
+		wcout << "플레이어 1 : " << playerOne << endl;
+		TextColor(WHITE);
+		wcout << "플레이어 2 : " << playerTwo;
+	}
 }
 bool CCheckWord::WordInputCheck()
 {
