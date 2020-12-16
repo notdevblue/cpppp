@@ -3,7 +3,11 @@
 #define WHITE 15 
 
 
-CCheckWord::CCheckWord() {}
+CCheckWord::CCheckWord()
+{
+	iter = vWordList.begin();
+	bIsAtList = false;
+}
 
 void CCheckWord::Gotoxy(int x, int y)
 {
@@ -48,14 +52,63 @@ void CCheckWord::PlayerName(LPSTR playerOne, LPSTR playerTwo, int activePlayer)
 		wcout << "플레이어 2 : " << playerTwo;
 	}
 }
-bool CCheckWord::WordInputCheck()
+
+void CCheckWord::CheckWord(wstring str)
 {
-	std::wcout << wordFirst << endl;
-	std::wcin >> wordLast;
+	bIsAtList = str == wordLast;
+}
+void CCheckWord::CheckWordClient(wstring str, char* clientMsg)
+{
+	bIsAtList = clientMsg == (char*)wordLast.c_str();
+}
+
+void CCheckWord::WordInputCheck()
+{
+	while (true)
+	{
+		bIsAtList = false;
+		std::wcout << wordFirst << endl;
+		std::wcin >> wordLast;
+		for (iter = vWordList.begin(); iter != vWordList.end(); ++iter)
+		{
+			CheckWord(*iter);
+		}
+		if (bIsAtList)
+		{
+			std::cout << "이미 사용한 단어입니다." << std::endl;
+			continue;
+		}
+		if (wordFirst.back() == wordLast.front())
+		{
+			vWordList.push_back(wordLast);
+			wordFirst = wordLast;
+			return;
+		}
+	}
+}
+
+const wchar_t* CCheckWord::ShowWord()
+{
+	const wchar_t* wcs = wordLast.c_str();
+	return wcs;
+}
+
+bool CCheckWord::WordInputCheckClient(char* clientMsg)
+{
+	bIsAtList = false;
+	for (iter = vWordList.begin(); iter != vWordList.end(); ++iter)
+	{
+		CheckWordClient(*iter, clientMsg);
+	}
+	if (bIsAtList)
+	{
+		return true;
+	}
 	if (wordFirst.back() == wordLast.front())
 	{
+		vWordList.push_back(wordLast);
 		wordFirst = wordLast;
-		return true;
+		return false;
 	}
 	else
 	{

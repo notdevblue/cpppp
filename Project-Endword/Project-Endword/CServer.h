@@ -1,18 +1,24 @@
 #pragma once
 #include <WinSock2.h>
-#include <vector>
 #include <stdio.h>
-#include <conio.h>
-#include <algorithm>
 
 #include "CCheckWord.h"
 #include "CAgreeDisagree.h"
 
-#define DEBUG
+#pragma region Debug
+// Debug header
+#include "Debug.h"
+#pragma endregion
 
-class CServer : public CCheckWord, CAgreeDisagree
+// Mother Multiplayer Class
+
+class CServer /*: public CCheckWord, CAgreeDisagree*/
 {
 private:
+	CCheckWord checkWord;
+	CAgreeDisagree agreeDisagree;
+
+
 	WSADATA wsaData;
 	SOCKET sServer;
 	SOCKET sClient;
@@ -31,7 +37,10 @@ private:
 	BOOL bKeepGoing;
 	BOOL bIsKoreanNickname;
 
-	INT iTurn;
+	/// <summary>
+	/// if iTurn is even, server has turn
+	/// </summary>
+	UINT iTurn;
 
 	enum CLIENTCONNECTION
 	{
@@ -39,6 +48,12 @@ private:
 		SERVERERROR = -1,
 		DISCONNECTED = 0,
 		CONNECTED = 1
+	};
+
+	enum SOCKETFLAG
+	{
+		CLIENTTURN,
+		SERVERTURN
 	};
 
 public:
@@ -50,8 +65,10 @@ public:
 	CServer(USHORT port = 4578, WORD pakcetSize = 1024);
 	~CServer();
 
+	bool FIsHost();
 	void Nickname();
 	void CheckNickname(char ch);
 	int InitServer();
+	int JoinServer();
 };
 

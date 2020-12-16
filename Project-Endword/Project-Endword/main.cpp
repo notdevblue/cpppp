@@ -22,10 +22,22 @@ int main()
 	{
 #ifdef DEBUG
 		printf("서버 모드에 들어와 있어요.\n\r");
+		printf("안타깝게도 아직 개발 중인 기능이라서 아직 작동하지 않습니다...\r\n아무 키나 눌러 종료하세요...\r\n");
+		_getch();
 		return(0);
 #endif // DEBUG
 
 		CServer server;
+		if (!server.FIsHost())
+		{
+			server.JoinServer();
+		}
+		else
+		{
+			server.InitServer();
+			std::cout << "아무 키나 눌러 종료하세요..." << std::endl;
+			_getch();
+		}
 	}
 
 	return(0);

@@ -1,4 +1,5 @@
 #pragma once
+#define _WINSOCKAPI_
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -13,9 +14,13 @@ using namespace std;
 class CAgreeDisagree
 {
 public:
+	CAgreeDisagree();
+
 	/// <summary>
 	/// 인정이면 참을, 노인정이면 거짓을 리턴
 	/// </summary>
 	/// <returns></returns>
-	bool AgreeDisagree();
+	bool AgreeDisagree(int);
+	bool AgreeDisagreeClient(int, int, LPSTR);
+
 };

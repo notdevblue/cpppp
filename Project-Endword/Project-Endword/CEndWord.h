@@ -4,7 +4,7 @@
 #include "CMainText.h"
 // mother class
 
-class CEndWord : public CAgreeDisagree, CCheckWord, CMainText
+class CEndWord/* : public CAgreeDisagree, CCheckWord, CMainText*/
 {
 private:
 	enum GAMEMODE
@@ -13,12 +13,19 @@ private:
 		MULTIPC
 	};
 
+	int iPlayerNumber;
+
+	CCheckWord wordCheck;
+	CAgreeDisagree agreeDisagree;
+	CMainText mainText;
+
 public:
 	CEndWord();
 
 	int SelectMode();
 
+	void PlayerNumSet();
+
 	bool Start();
-	bool MakeRoom();
 };
 
